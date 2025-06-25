@@ -1,0 +1,48 @@
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background: #f8fdf8;
+  color: #333;
+}
+header {
+  background: #dff0df;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #2c662d;
+  font-weight: bold;
+}
+.logo {
+  height: 40px;
+}
+main {
+  padding: 2rem;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.card {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+footer {
+  padding: 1rem;
+  background: #e5f5e5;
+  font-size: 0.9rem;
+  text-align: center;
+}
