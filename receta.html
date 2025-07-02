@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Detalle de Receta - Botiquín Verde</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{background:#f2eee6;}
+    body{font-family:'Lora',serif;color:#2c3e1f;padding:1rem;}
+    .btn-back{display:inline-block;margin-bottom:1rem;padding:.5rem 1rem;background:#2c662d;color:#fff;border-radius:5px;text-decoration:none;}
+    .container{max-width:800px;margin:0 auto;background:#fff;padding:2rem;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+    h1{font-size:2.25rem;color:#2c662d;text-align:center;margin-bottom:1rem;}
+    section{margin-bottom:1.75rem;}
+    section h2{font-size:1.5rem;color:#38502e;border-bottom:2px solid #ebf3ea;padding-bottom:.3rem;margin-bottom:.5rem;}
+    ul{list-style:none;margin-left:0;}
+    ul li{position:relative;padding-left:1.5rem;margin-bottom:.5rem;}
+    ul li::before{content:'•';position:absolute;left:0;color:#2c662d;}
+    .highlight{background:#ebf3ea;padding:1rem;border-left:4px solid #2c662d;border-radius:4px;}
+  </style>
+</head>
+<body>
+  <a href="index.html" class="btn-back">&larr; Volver</a>
+  <div class="container">
+    <h1 id="title">Receta</h1>
+    <section><h2>Ingredientes</h2><ul id="ingredientes"></ul></section>
+    <section><h2>Preparación</h2><div class="highlight"><p id="preparacion"></p></div></section>
+    <section><h2>Rinde</h2><p id="rinde"></p></section>
+    <section><h2>Duración del tratamiento</h2><p id="duracion"></p></section>
+    <section><h2>Beneficios</h2><div class="highlight"><p id="beneficios"></p></div></section>
+    <section><h2>Intensidad</h2><p id="intensidad"></p></section>
+    <section><h2>Nota</h2><p id="nota"></p></section>
+    <section id="advertencia-section" style="display:none;"><h2>Precauciones</h2><div class="highlight"><p id="advertencia"></p></div></section>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const receta = JSON.parse(localStorage.getItem('recetaSeleccionada')) || {};
+      document.getElementById('title').innerText = receta.nombre || 'Receta';
+      if (receta.ingredientes) {
+        receta.ingredientes.split(',').forEach(i => {
+          const li = document.createElement('li');
+          li.innerText = i.trim();
+          document.getElementById('ingredientes').appendChild(li);
+        });
+      }
+      ['preparacion','rinde','duracion','beneficios','intensidad','nota'].forEach(field => {
+        if (receta[field]) document.getElementById(field).innerText = receta[field];
+      });
+      if (receta.advertencia) {
+        document.getElementById('advertencia').innerText = receta.advertencia;
+        document.getElementById('advertencia-section').style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
